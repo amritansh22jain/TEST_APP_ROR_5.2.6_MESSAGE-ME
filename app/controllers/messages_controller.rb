@@ -4,12 +4,7 @@ class MessagesController < ApplicationController
   def create
     message = current_user.messages.build(message_params)
     if message.save
-      ActionCable.server.broadcast 'chatroom_channel',
-<<<<<<< HEAD
-                                    mod_message: message_render(message)
-=======
-                                    mod_message: message_render(message.body)
->>>>>>> b16dbab3cb385c5ed3421b64830a1e7ca210e3b3
+      ActionCable.server.broadcast 'chatroom_channel', mod_message: message_render(message)
     end
   end
 
@@ -20,11 +15,7 @@ class MessagesController < ApplicationController
   end
 
   def message_render(message)
-<<<<<<< HEAD
     render(partial: 'message', locals: {message: message})
-=======
-    render (partial: 'message')
->>>>>>> b16dbab3cb385c5ed3421b64830a1e7ca210e3b3
   end
 
 end
